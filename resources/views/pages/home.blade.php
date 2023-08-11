@@ -6,13 +6,11 @@
 
 <main id="main">
 
-    <x-frontend.about></x-frontend.about>
+    @include('components.frontend.about');
 
-    <x-frontend.services></x-frontend.services>
+    @include('components.frontend.services');
 
-    <x-frontend.team></x-frontend.team>
-
-    <x-frontend.contact></x-frontend.contact>
+    @include('components.frontend.team');
 
 </main><!-- End #main -->
 

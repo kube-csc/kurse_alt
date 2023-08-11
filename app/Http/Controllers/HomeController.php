@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Trainertable;
+use App\Models\Coursedate;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,9 +13,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.home' , [
+       $trainers   = Trainertable::where('sportSection_id', env('KURS_ABTEILUNG'))->get();
 
-        ]);
+        return view('pages.home' , [
+                    'trainers'        => $trainers,
+                    'countTrainers'   => $trainers->count(),
+            ]);
     }
 
     /**
