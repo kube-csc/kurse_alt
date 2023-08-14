@@ -13,12 +13,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-       $trainers   = Trainertable::where('sportSection_id', env('KURS_ABTEILUNG'))->get();
+        $trainers   = Trainertable::where('sportSection_id', env('KURS_ABTEILUNG'))->get();
+        $coursdates = Coursedate::where('sportSection_id', env('KURS_ABTEILUNG'))->get();
 
         return view('pages.home' , [
                     'trainers'        => $trainers,
                     'countTrainers'   => $trainers->count(),
-            ]);
+                    'coursdates'      => $coursdates,
+                    'countCoursdates' => $coursdates->count(),
+        ]);
     }
 
     /**
