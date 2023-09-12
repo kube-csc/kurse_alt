@@ -24,6 +24,13 @@ Route::get('/Startseite', 'App\Http\Controllers\HomeController@index');
 Route::get('/Impressum', 'App\Http\Controllers\ImpressumController@getImpressumDaten');
 Route::get('/Information/Datenschutzerklaerung', 'App\Http\Controllers\DatenschutzerklärungController@getDatenschutzerklärungDaten');
 
+Route::get('/Angebot', 'App\Http\Controllers\HomeController@offer');
+Route::get('/Sportart', 'App\Http\Controllers\HomeController@sportType');
+Route::get('/Trainer', 'App\Http\Controllers\HomeController@trainer');
+Route::get('/Sportgeräte', 'App\Http\Controllers\HomeController@sportUnit');
+Route::get('/Kurse', 'App\Http\Controllers\HomeController@course');
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

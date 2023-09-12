@@ -5,35 +5,56 @@
         <div class="row no-gutters">
             <div class="content col-xl-5 d-flex align-items-stretch" data-aos="fade-up">
                 <div class="content">
-                    <h3>Kursinformation</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                    </p>
-                    <a href="#" class="about-btn">About us <i class="bx bx-chevron-right"></i></a>
+                    @include('textimport.kurseInfoAllgemein')
+                    <a href="/Kurse" class="about-btn">mehr Informationen <i class="bx bx-chevron-right"></i></a>
                 </div>
             </div>
             <div class="col-xl-7 d-flex align-items-stretch">
                 <div class="icon-boxes d-flex flex-column justify-content-center">
                     <div class="row">
                         <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
-                            <i class="bx bx-receipt"></i>
-                            <h4>Was ist ?</h4>
-                            <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                            <i class="bx bx-info-circle"></i>
+                            <!-- Was ist -->
+                            @include('textimport.sportartbeschreibungKurz')
+                            <div class="read-more">
+                                <a href="/Sportart" class="icofont-arrow-right">mehr</a>
+                            </div>
                         </div>
                         <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
-                            <i class="bx bx-cube-alt"></i>
+                            <i class="bx bx-info-circle"></i>
                             <h4>Trainer</h4>
-                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                            @foreach($trainers as $trainer)
+                                <ul>
+                                    <li>{{ $trainer->getKursTrainer->vorname }} {{ $trainer->getKursTrainer->nachname }}</li>
+                                </ul>
+                            @endforeach
+                            <div class="read-more">
+                                <a href="/Trainer" class="icofont-arrow-right">mehr</a>
+                            </div>
                         </div>
                         <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
-                            <i class="bx bx-images"></i>
-                            <h4>Material</h4>
-                            <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                            <i class="bx bx-info-circle"></i>
+                            <h4>Sportgeräte</h4>
+                            <ul>
+                                @foreach($sportEquipments as $sportEquipment)
+                                    <li>{{ $sportEquipment->sportgeraet }}</li>
+                                @endforeach
+                            </ul>
+                            <div class="read-more">
+                                <a href="/Sportgeräte" class="icofont-arrow-right">mehr</a>
+                            </div>
                         </div>
                         <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
-                            <i class="bx bx-shield"></i>
-                            <h4>Kurse</h4>
-                            <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
+                            <i class="bx bx-info-circle"></i>
+                            <h4>Welche Kurse gibt es?</h4>
+                            <ul>
+                                @foreach($courses as $course)
+                                    <li>{{ $course->kursName }}</li>
+                                @endforeach
+                            </ul>
+                            <div class="read-more">
+                                <a href="/Kurse" class="icofont-arrow-right">mehr</a>
+                            </div>
                         </div>
                     </div>
                 </div><!-- End .content-->

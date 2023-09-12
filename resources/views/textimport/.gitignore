@@ -4,3 +4,6 @@ map.blade.php
 cssColor.blade.php
 footer.blade.php
 kurse.blade.php
+kurseInfoAllgemein.blade.php
+sportartbeschreibung.blade.php
+sportartbeschreibungKurz.blade.php

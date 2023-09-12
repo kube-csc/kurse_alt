@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Trainertable;
 use App\Models\Coursedate;
+use App\Models\Course;
+use App\Models\SportEquipment;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,61 +16,65 @@ class HomeController extends Controller
     public function index()
     {
         $trainers   = Trainertable::where('sportSection_id', env('KURS_ABTEILUNG'))->get();
-        $coursdates = Coursedate::where('sportSection_id', env('KURS_ABTEILUNG'))->get();
+        $coursdates = Coursedate::where('sportSection_id', env('KURS_ABTEILUNG'))
+                                ->where('kursstarttermin', '>=' , date('Y-m-d', strtotime('now')))
+                                ->get();
+        $courses    = Course::where('sportSection_id', env('KURS_ABTEILUNG'))->get();
+        $sportEquipments = SportEquipment::where('sportSection_id', env('KURS_ABTEILUNG'))->get();
 
         return view('pages.home' , [
                     'trainers'        => $trainers,
                     'countTrainers'   => $trainers->count(),
                     'coursdates'      => $coursdates,
                     'countCoursdates' => $coursdates->count(),
+                    'courses'         => $courses,
+                    'sportEquipments' => $sportEquipments,
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function offer()
     {
-        //
+        $coursdates = Coursedate::where('sportSection_id', env('KURS_ABTEILUNG'))
+            ->where('kursstarttermin', '>=' , date('Y-m-d', strtotime('now')))
+            ->get();
+
+        return view('pages.offer' , [
+            'countCoursdates' => $coursdates->count(),
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function sportType()
     {
-        //
+        return view('pages.sportType' );
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function trainer()
     {
-        //
+        $trainers   = Trainertable::where('sportSection_id', env('KURS_ABTEILUNG'))->get();
+
+        return view('pages.trainer'  , [
+            'trainers'        => $trainers,
+            'countTrainers'   => $trainers->count(),
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function sportUnit()
     {
-        //
+        $sportEquipments = SportEquipment::where('sportSection_id', env('KURS_ABTEILUNG'))->get();
+
+        return view('pages.sportUnit' , [
+            'countSportEquipments' => $sportEquipments->count(),
+            'sportEquipments' => $sportEquipments,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function course()
     {
-        //
+        $courses    = Course::where('sportSection_id', env('KURS_ABTEILUNG'))->get();
+
+        return view('pages.course' , [
+            'courses'         => $courses
+        ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

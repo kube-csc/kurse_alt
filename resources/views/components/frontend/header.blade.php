@@ -16,8 +16,7 @@
                 <li><a href="#services">Events</a></li>
                 */ ?>
                 @if(isset($_COOKIE['log_remember']))
-                   <li><a href="/Helferliste">Helferliste</a></li>
-                   <li><a href="/Abmelden">Abmelden</a></li>
+                    <li><a href="/Abmelden">Abmelden</a></li>
                 @else
                     <li><a href="/Anmelden">Anmelden</a></li>
                 @endif
